@@ -1,0 +1,69 @@
+        nodes js Boiler
+
+==>.en ==>secret files which will hide from any one
+
+mngodbpassword==>zDzJv0sjAo0vGbs6
+
+username==>ahmedadmin
+pas==>7if4W5WfFoSaLtaZ
+
+//express server by default json data accept nai krta hai tou usko humein middle ke use convert krna parhta hai like 
+
+==>aap.use(express.json());
+
+this live path of mongodb
+mongodb+srv://<username>:<password>@cluster0.zjzvkg8.mongodb.net/?retryWrites=true&w=majority
+
+==>npm init or yarn init -y(without asking anything) ==>pk.json
+==>npm express ==> create serve with node_modules
+==>npm nodemon ==>automatic start server -D 
+==>npm mongoose
+==>npm dotenv ==>keep secret things by saving in environment varaible
+==>npm i multer ==>for file upload
+==>uuid==>make unique id
+==>validation==>library==>joi 
+1)configer(folder)==>file(db.js)==>for db connection
+
+
+
+//now send email
+==>emailto==>should be original
+==>npm i nodemailer ==>packge to send to email
+==>smtp(Simple Mail Transfer Protocol)
+==>(services)==>smtp==>sendinblue
+
+
+jab b hum class ka object pass krege ya create ge tou sub se phle contructor call hoga
+
+instanceof ==>check krge ke xyz object ka us class ka ya nai
+class abc
+constructor(a,b)
+
+
+catch==>ka error wo bydefault error pick krega
+
+
+class ahmed =new (1,5)
+
+ if(ahmed instanceof abc)==>yes 
+
+
+Here, object is the object we want to check, and constructor is the constructor function we want to check against. The operator returns true if object is an instance of constructor, or false otherwise.
+
+
+//export import shortcut
+export {default as registercontrol } from './registercontroler
+
+jab aap export default krte ho tou aap import ke time kuch ba dey skhte ho wrna wrna apka accurate name dena hota hai
+
+agar hum error ko throw se bheje tou async function ko catch nai krta hai ,error handling middleware hai wo usko catch nai krega
+
+CustomError
+jab use krte wo unique errors aae like email already exist in database  
+
+
+hash-password ==>for hash-password =take plaintext return encrypted text
+we use library ==> bcrypt
+
+for Jwt(json web token) Token generate for user
+npm i jsonwebtoken
