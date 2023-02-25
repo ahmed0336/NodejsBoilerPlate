@@ -17,6 +17,8 @@ const errorHandler = (err, req ,resp ,next) => {
     }
 
     // validation ==>joi yeh class provide kr rha hai
+    //ValidationError(yeh ek class hai )
+    //yeh check kr rha hai ke err object hai validationError ka jo ek class hai js ka
     if(err instanceof ValidationError ){
 
         // let hamesha ek dafa hi declear hota hai smjha

@@ -1,5 +1,9 @@
 import Joi from "joi";
 import CustomErrorHandler from "../../services/CustomErrorHandler";
+import JwtService from "../../services/JwtService";
+import bcrypt from 'bcrypt' 
+
+import { User } from '../../models'
 
 const registerController = {
 
@@ -30,6 +34,7 @@ const registerController = {
     if(error){
         // yeh joi ke validate error check kregea req.body se aae ga ,yeh error handling middleware ke next ke tareqe se 422 errors ,
         // extra errors ke lye hum apna customer errorhandler ki class banaege 
+        // yeh next jab chaleyga jab error hoga validation me phir yeh humere errorhandler me jae ga ,error bhejta like next(next==>for joi etc)
         return next(error)
     }
 
@@ -42,7 +47,15 @@ const registerController = {
         // exists mongodb query hai
         const exist = await User.exists({email:req.body.email})
 
+
+        console.log("try",exist)
+
+        
+
         if(exist){
+
+
+            console.log("if")
 
             return next(CustomErrorHandler.alreadyExist('This email is already taken.'));
         }
@@ -52,13 +65,51 @@ const registerController = {
             // try and catch ==>is lye use kia hai incase database me se error aae tou try and catch se handle karege
     } catch(err){
 
+        console.log("catch",err)
+
         return next(err);
 
     }
 
+    const  { name , email ,password } = req.body;
+      
+    // hash-password ,means  secure 0r hide password
+
+    const hashedPassword = await bcrypt.hash(password,10)
+
+    // destructure ka object
+
+   
 
 
-        res.json({ massge: "Abc" });
+   const user = new User({
+    name:name,
+    email:email,
+    password:hashedPassword
+    
+    })
+
+   let access_token
+
+   try{
+    // save user input data in live database store
+    const result = await user.save();
+
+    console.log("result==>",result)
+    // now create JWT Token
+    access_token = JwtService.sign({
+        _id:result.id,
+        role:result.role
+    })
+
+
+   } catch(err){
+
+    return next(err)
+
+   }
+
+        res.json({ access_token:access_token});
 
     }
 
