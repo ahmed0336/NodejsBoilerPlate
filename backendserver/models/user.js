@@ -11,4 +11,6 @@ const UserSchema = new  Schema({
 }, {timestamps:true})
 
 // first model=User ,second ==>schema ,third ==>collection and table name
-export default mongoose.model('User',UserSchema,"users")
+// third wala humera collection(table) ka name hai agr third wala hum na likhe ge tou wo by default model ke nam se table (collection ) banae ga 
+// export default mongoose.model('User',UserSchema,"baloch",)
+export default mongoose.model('User',UserSchema,"users",)

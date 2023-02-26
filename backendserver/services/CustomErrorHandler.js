@@ -28,6 +28,14 @@ class CustomErrorHandler  extends Error{
     }
 
 
+    // yeh alag se is lye bana uski dono ka error(message) and status different hoga
+    static wrongCredentials(message= "Username or Password is Wrong" ) {
+        // console.log("already==>",message)
+
+        return new CustomErrorHandler(401,message) 
+    }
+
+
 }
 
 export default CustomErrorHandler;
