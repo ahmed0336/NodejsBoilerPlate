@@ -47,7 +47,7 @@ const loginController = {
     // ab query lagae ge mongodb ka hai data get aur check krne ke lye
     // {email:req.body.email} 
     // mgodb(email):(email) yeh humra hai jo post man se bhej rhy hai
-    const user = await User.findOne({email:req.body.email})
+    const user = await User.findOne({email:req.body.email}).select('-createdAt -updatedAt -__v ')
 
     // first check kia email mojood hai ya nai database me  
     if(!user){
@@ -75,11 +75,16 @@ const loginController = {
     // ab yahan hum apna jwtService apna hai sign ka usko yeh dono cheezy database se hum mangwa tha ab usko is function me pass kr rhy hai 
     let  access_token = JwtService.sign({
         _id:user.id,
-        role:user.role
+        role:user.role,
     })
 
+    // again run this query because to remove password from client
+    const UserDetail= await User.findOne({email:req.body.email}).select('-password -createdAt -updatedAt -__v ')
+
     resp.json({
-        access_token
+        access_token,
+        UserDetail
+
     })
 
 

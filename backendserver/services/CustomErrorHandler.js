@@ -36,6 +36,21 @@ class CustomErrorHandler  extends Error{
     }
 
 
+    static UnAuthorized(message= "UnAuthorized" ) {
+        // console.log("already==>",message)
+        
+
+        return new CustomErrorHandler(401,message) 
+    }
+
+    static notFound(message= "notFound" ) {
+        // console.log("already==>",message)
+
+        return new CustomErrorHandler(404,message) 
+    }
+
+
+
 }
 
 export default CustomErrorHandler;

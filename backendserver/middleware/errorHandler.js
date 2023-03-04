@@ -3,7 +3,7 @@ import { ValidationError } from "joi";
 import CustomErrorHandler from "../services/CustomErrorHandler";
 const errorHandler = (err, req ,resp ,next) => {
 
-    // by default error show 
+    // by default error show krne ke lye
     let statusCode =500;
     // 
     let data = {
